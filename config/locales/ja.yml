@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      wish:
+        name: 名前
+        message: 願いごと
+    errors:
+      models:
+        wish:
+          attributes:
+            message:
+              blank: "%{attribute}を入力してください"
+              too_long: "%{attribute}は%{count}文字以内で入力してください"
