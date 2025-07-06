@@ -1,0 +1,7 @@
+- card_classes = "p-4 rounded-lg shadow-md text-center font-medium text-gray-800 #{color}"
+
+div class=card_classes
+  p.text-lg.leading-relaxed.mb-2
+    = simple_format(wish.message)
+  p.text-sm.text-right.text-gray-500
+    = wish.name.presence || "名無し"

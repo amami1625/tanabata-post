@@ -1,24 +1,33 @@
-h1 🎋 たんざくポスト
+.container.mx-auto.px-4.max-w-5xl
+  h1.text-2xl.font-bold.text-center.mb-6 七夕ぽすと
 
-= form_with model: @wish, url: wishes_path, local: true do |f|
-  .mb-4
-    = f.label :name, "名前（任意）"
-    br
-    = f.text_field :name
+  = form_with model: @wish, url: wishes_path, local: true, class: "space-y-4" do |f|
+    .flex.flex-col
+      = f.label :name, "名前（任意）", class: "font-semibold mb-1"
+      = f.text_field :name, class: "border rounded px-3 py-2 text-black", placeholder: "名無し"
 
-  .mb-4
-    = f.label :message, "願いごと"
-    br
-    = f.text_area :message, rows: 3
+    - if @wish.errors[:message].any?
+      ul.text-sm.text-red-500.mt-1
+        - @wish.errors[:message].each do |msg|
+          li= msg
 
-  = f.submit "投稿する"
+    .flex.flex-col
+      = f.label :message, "願いごと", class: "font-semibold mb-1"
+      = f.text_area :message, rows: 3, class: "border rounded px-3 py-2 text-black w-full", placeholder: "あなたの願いを書いてください"
 
-hr
+    = f.submit "投稿する", class: "bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded"
 
-h2 🎋 願いごと一覧
-ul
-  - @wishes.each do |wish|
-    li
-      strong = wish.name.presence || "名無し"
-      | ：
-      = simple_format(wish.message)
+  hr.my-8
+
+  = render "shared/flash_message"
+
+  h2.text-xl.font-semibold.mb-4 願いごと一覧
+
+  - colors = %w[bg-pink-300 bg-yellow-300 bg-blue-300 bg-green-300 bg-purple-300]
+
+  .grid.grid-cols-1.gap-6
+    - @wishes.each_with_index do |wish, i|
+      - color = colors[i % colors.length]
+      = render partial: "wish", locals: { wish: wish, color: color }
+
+
