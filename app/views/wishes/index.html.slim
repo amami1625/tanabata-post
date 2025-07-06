@@ -1,0 +1,24 @@
+h1 🎋 たんざくポスト
+
+= form_with model: @wish, url: wishes_path, local: true do |f|
+  .mb-4
+    = f.label :name, "名前（任意）"
+    br
+    = f.text_field :name
+
+  .mb-4
+    = f.label :message, "願いごと"
+    br
+    = f.text_area :message, rows: 3
+
+  = f.submit "投稿する"
+
+hr
+
+h2 🎋 願いごと一覧
+ul
+  - @wishes.each do |wish|
+    li
+      strong = wish.name.presence || "名無し"
+      | ：
+      = simple_format(wish.message)
