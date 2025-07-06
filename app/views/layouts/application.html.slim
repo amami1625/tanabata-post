@@ -9,7 +9,9 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
 
-  body class="relative bg-[url('/assets/summer_night_sky.webp')] bg-cover bg-center text-white min-h-screen"
+  - bg_url = asset_path("summer_night_sky.webp")
+
+  body class="relative bg-cover bg-center text-white min-h-screen" style="background-image: url('#{bg_url}');"
     .absolute.inset-0.bg-black.opacity-70.z-0
     main.relative.z-10.flex.flex-col.items-center.py-8
       = yield
