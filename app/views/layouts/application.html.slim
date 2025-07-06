@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Myapp
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+
+  body class="relative bg-[url('/assets/summer_night_sky.webp')] bg-cover bg-center text-white min-h-screen"
+    .absolute.inset-0.bg-black.opacity-70.z-0
+    main.relative.z-10.flex.flex-col.items-center.py-8
+      = yield
